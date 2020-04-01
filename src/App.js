@@ -2,6 +2,7 @@ import React from "react";
 import staff from "./staff.json"
 import StaffEntry from "./components/StaffEntry"
 import Header from "./components/Header"
+import SearchBar from "./components/SearchBar";
 import "./App.css"
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Header />
+                <SearchBar />
                 <table className="responsive-table highlight">
                     {/* Table Headers */}
                     <thead>
