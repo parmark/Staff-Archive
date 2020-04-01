@@ -1,6 +1,7 @@
 import React from "react";
 import staff from "./staff.json"
 import StaffEntry from "./components/StaffEntry"
+import Header from "./components/Header"
 
 class App extends React.Component {
     state = {
@@ -10,6 +11,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <Header />
                 <table>
                     {/* Table Headers */}
                     <thead>
