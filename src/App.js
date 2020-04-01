@@ -27,8 +27,7 @@ class App extends React.Component {
                     <tbody>
                         {this.state.staff.map(staff => 
                             <StaffEntry
-                                first={staff.name.first}
-                                last={staff.name.last}
+                                name={`${staff.name.first} ${staff.name.last}`}
                                 age={staff.dob.age}
                                 picture={staff.picture.thumbnail}
                                 key={staff.login.uuid}
