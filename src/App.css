@@ -1,0 +1,13 @@
+html {
+    background-color: brown;
+}
+
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: blanchedalmond;
+}
+
+th, td {
+    background-color: blanchedalmond;
+    font-size: 25px;
+}
