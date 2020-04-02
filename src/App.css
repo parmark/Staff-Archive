@@ -12,6 +12,10 @@ th, td {
     font-size: 25px;
 }
 
+.btn {
+    margin-top: 25px;
+}
+
  .input-field input[type=text]:focus + label {
     color: brown !important;
 }

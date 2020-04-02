@@ -7,7 +7,8 @@ import "./App.css"
 class App extends React.Component {
     state = {
         staff: staff,
-        filteredStaff: staff
+        filteredStaff: staff,
+        ascendingOrder: true
     }
 
     handleInputChange = event => {
@@ -17,13 +18,35 @@ class App extends React.Component {
         })
     }
 
+    handleOrderChange = event => {
+        this.state.ascendingOrder ? this.setState({ascendingOrder: false}) : this.setState({ascendingOrder: true})
+    }
+
+    sortByNameAsc = (a, b) => {
+            if (a.name.first < b.name.first) {
+                return -1
+            }
+            if (b.name.first < a.name.first) {
+                return 1
+            }
+    }
+
+    sortByNameDes = (a, b) => {
+            if (a.name.first < b.name.first) {
+                return 1
+            }
+            if (b.name.first < a.name.first) {
+                return -1
+            }
+    }
 
     render() {
         return (
             <div className="container">
                 <Header />
+                {/* Searchbar */}
                 <div className="row">
-                    <form className="col s4 offset-s4">
+                    <form className="col s4 offset-s3">
                         <div className="row">
                             <div className="input-field col s12">
                                 <input 
@@ -35,6 +58,10 @@ class App extends React.Component {
                             </div>
                         </div>
                     </form>
+                    <button 
+                        className="btn brown"
+                        onClick={this.handleOrderChange}    
+                    >Order by Name</button>
                 </div>
                 <table className="responsive-table highlight">
                     {/* Table Headers */}
@@ -48,21 +75,38 @@ class App extends React.Component {
 
                     {/* Table Entries */}
                     <tbody>
-                        {this.state.staff === this.state.filteredStaff ? 
-                        this.state.staff.map(staff => 
-                            <StaffEntry
-                                name={`${staff.name.first} ${staff.name.last}`}
-                                age={staff.dob.age}
-                                picture={staff.picture.thumbnail}
-                                key={staff.login.uuid}
-                            />)
-                        :this.state.filteredStaff.map(staff => 
-                            <StaffEntry
-                                name={`${staff.name.first} ${staff.name.last}`}
-                                age={staff.dob.age}
-                                picture={staff.picture.thumbnail}
-                                key={staff.login.uuid}
-                            />)}
+                        {this.state.ascendingOrder ? 
+                            this.state.staff === this.state.filteredStaff ? 
+                                this.state.staff.sort(this.sortByNameAsc).map(staff => 
+                                    <StaffEntry
+                                        name={`${staff.name.first} ${staff.name.last}`}
+                                        age={staff.dob.age}
+                                        picture={staff.picture.thumbnail}
+                                        key={staff.login.uuid}
+                                    />)
+                                :this.state.filteredStaff.sort(this.sortByNameAsc).map(staff => 
+                                    <StaffEntry
+                                        name={`${staff.name.first} ${staff.name.last}`}
+                                        age={staff.dob.age}
+                                        picture={staff.picture.thumbnail}
+                                        key={staff.login.uuid}
+                                    />)
+                        : 
+                            this.state.staff === this.state.filteredStaff ? 
+                                this.state.staff.sort(this.sortByNameDes).map(staff => 
+                                    <StaffEntry
+                                        name={`${staff.name.first} ${staff.name.last}`}
+                                        age={staff.dob.age}
+                                        picture={staff.picture.thumbnail}
+                                        key={staff.login.uuid}
+                                    />)
+                                :this.state.filteredStaff.sort(this.sortByNameDes).map(staff => 
+                                    <StaffEntry
+                                        name={`${staff.name.first} ${staff.name.last}`}
+                                        age={staff.dob.age}
+                                        picture={staff.picture.thumbnail}
+                                        key={staff.login.uuid}
+                                    />)}
                     </tbody>
                 </table>
             </div>
