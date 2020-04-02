@@ -14,7 +14,7 @@ class App extends React.Component {
     handleInputChange = event => {
         const value = event.target.value;
         this.setState({
-            filteredStaff: this.state.staff.filter(staff => `${staff.name.first} ${staff.name.last}`.toLowerCase().includes(value))
+            filteredStaff: this.state.staff.filter(staff => `${staff.name.first} ${staff.name.last}`.toLowerCase().includes(value.toLowerCase()))
         })
     }
 
